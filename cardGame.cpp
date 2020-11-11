@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 int main(){
@@ -11,13 +12,9 @@ int main(){
             if(j == 0){
                 a = b;
             }
-            else if (a >= b){
-                a = b;
-            }
+            a = min(a, b);
         }
-        if (x <= a){
-            x = a;
-        }
+        x = max(x, a);
     }
     cout << x << endl;
 }

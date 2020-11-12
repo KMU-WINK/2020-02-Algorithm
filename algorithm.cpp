@@ -134,6 +134,105 @@ int time() {
     return cnt;
 }
 
+//상하좌우
+void UpDownLeftRight() {
+    int n = 0;	cin >> n;	cin.ignore();	// getline() 함수 쓰기 위해서 버퍼 비우기.
+    int curX = 1, curY = 1;
+
+    string plan; getline(cin, plan);		// 아예 string으로 입력받아버리기.
+    for (int i = 0; i < plan.size(); ++i) {
+        char order = plan[i];
+        switch (order) {
+        case 'U':
+            if (curX != 1) curX--;
+            break;
+        case 'D':
+            if (curX != n) curX++;
+            break;
+        case 'L':
+            if (curY != 1) curY--;
+            break;
+        case 'R':
+            if (curY != n) curY++;
+            break;
+        }
+    }
+    cout << curX << ' ' << curY << '\n';
+}
+
+//게임 개발
+void turn(int& dir, int& turnCnt) {
+    if (dir > 0) {
+        dir--;
+    }
+    else {
+        dir = 3;
+    }
+    turnCnt++;
+}
+void developGame() {
+    int map[50][50];
+    int row, col, dir, x, y;
+    cin >> row >> col;
+    cin >> x >> y >> dir;
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            cin >> map[i][j];
+        }
+    }
+
+    //solution
+    int cnt = 0, turnCnt = 0;
+
+    //다 막힌 경우 뒤로 이동
+    if (turnCnt == 4) {
+
+    }
+
+    //1. 해당 방향에 갈 수 있는 칸 있으면 전진
+    if (dir == 0) {         //북
+        if (map[y - 1][x] == 0) {   //전진 가능하면 전진
+            y--;
+            cnt++;
+        }
+        else {                      //불가하면 turn
+            turn(dir, turnCnt);
+        }
+    }
+    else if (dir == 1) {    //동
+        if (map[y][x + 1] == 0) {
+            x++;
+            cnt++;
+        }
+        else {
+            turn(dir, turnCnt);
+        }
+    }
+    else if (dir == 2) {    //남
+        if (map[y + 1][x] == 0) {
+            y++;
+            cnt++;
+        }
+        else {
+            turn(dir, turnCnt);
+        }
+    }
+    else if (dir == 3) {    //서
+        if (map[y][x - 1] == 0) {
+            x--;
+            cnt++;
+        }
+        else {
+            turn(dir, turnCnt);
+        }
+    }
+
+
+    cout << cnt << endl;
+}
+
 #include <iostream>
 #include <algorithm>
 #include <climits>
@@ -150,7 +249,11 @@ int main(void) {
 
     //answer = royalKnight();
 
-    answer = time();
+    //answer = time();
+
+    UpDownLeftRight();
+
+    developGame();
 
     cout << answer << endl;
 }

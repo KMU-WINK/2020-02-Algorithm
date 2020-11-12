@@ -100,6 +100,40 @@ int biggerNum() {
     return answer;
 }
 
+//왕실의 나이트... 어려워서 참고
+static constexpr int moving[8][2]{
+    {1, -2}, {2, -1}, {2, 1}, {1, 2},
+    {-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}
+};	// 나이트의 이동경로 변위를 (y, x)로 나타냄.
+inline bool isInner(int row, int col, int num) {
+    int newY = col + moving[num][0], newX = row + moving[num][1];
+    return ((1 <= newY && newY <= 8) && (1 <= newX && newX <= 8));
+}
+int royalKnight() {
+    string location;
+    cin >> location;
+    // 알파벳은 열(col)을 의미, 숫자는 행(row)을 의미하고, 1을 더해줘야 한다.
+    int row = location[1] - '1' + 1, col = location[0] - 'a' + 1;
+
+    int answer = 0;
+    for (int i = 0; i < 8; ++i)	// 8방향 모두 테스트
+        if (isInner(col, row, i)) answer++;
+
+    return answer;
+}
+
+//시각... to_string(), find(), string::npos
+int time() {
+    int n = 0;	cin >> n;
+    int cnt = 0;
+    for (int i = 0; i <= n; ++i)
+        for (int j = 0; j < 60; ++j)
+            for (int k = 0; k < 60; ++k)
+                if ((to_string(i) + to_string(j) + to_string(k)).find('3') != string::npos) cnt++;
+
+    return cnt;
+}
+
 #include <iostream>
 #include <algorithm>
 #include <climits>
@@ -112,7 +146,11 @@ int main(void) {
 
     //answer = cardGame();
 
-    answer = biggerNum();
+    //answer = biggerNum();
+
+    //answer = royalKnight();
+
+    answer = time();
 
     cout << answer << endl;
 }

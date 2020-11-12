@@ -1,12 +1,9 @@
 import sys
 
-
 n, m, k = tuple(map(int, sys.stdin.readline().split()))
-args = list(map(int, sys.stdin.readline().split()))
-args.sort(reverse=True)
+args = sorted(list(map(int, sys.stdin.readline().split())), reverse=True)
+count, max_count = 0, 0
 
-count = 0
-max_count = 0
 for i in range(m):
     if max_count < k:
         count += args[0]

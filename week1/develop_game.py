@@ -3,13 +3,7 @@ from copy import deepcopy
 
 n, m = tuple(map(int, sys.stdin.readline().split()))
 location = list(map(int, sys.stdin.readline().split()))
-
-DIRECT = [
-    [0, -1],
-    [1, 0],
-    [0, 1],
-    [-1, 0],
-]
+DIRECT = [[0, -1], [1, 0], [0, 1], [-1, 0]]
 
 maps = [list(map(int, sys.stdin.readline().split())) for x in range(n)]
 visited = deepcopy(maps)

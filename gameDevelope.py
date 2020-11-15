@@ -6,7 +6,7 @@ array = [[int(i) for i in input().split()]for j in range(n)]
 xlist = [0,1,0,-1] #왼쪽 아래 오른쪽 위
 ylist = [-1,0,1,0]
 def check(x,y): # 사방이 다 막혀있는지 확인
-    for i in range(3) :
+    for i in range(4) :
         if array[x+xlist[i]][y+ylist[i]]!=1:
             return 1
     return 0

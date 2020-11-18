@@ -170,67 +170,104 @@ void turn(int& dir, int& turnCnt) {
     }
     turnCnt++;
 }
+static constexpr int gmoving[4][2]{
+    {-1, 0}, {0, 1}, {1, 0}, {0, -1}
+};	// 북쪽	   동쪽	   남쪽	   서쪽
+static int N, M, curX, curY, pos, map[50][50];	// 0: 육지, 1: 바다, 2: 방문
+enum class state { land, ocean, visited };
 void developGame() {
-    int map[50][50];
-    int row, col, dir, x, y;
-    cin >> row >> col;
-    cin >> x >> y >> dir;
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < col; j++)
-        {
-            cin >> map[i][j];
+    cin >> N >> M;
+    cin >> curX >> curY >> pos;
+
+    for (int y = 0; y < N; ++y)
+        for (int x = 0; x < M; ++x)
+            cin >> map[y][x];
+    int ret = 1;
+    map[curY][curX] = static_cast<int>(state::visited);	// 첫 칸을 방문표시 해준다.
+
+    while (true) {
+        int returnCnt = 0;
+        for (int i = 0; i < 4; ++i) {
+            pos = (pos - 1 < 0) ? 3 : pos - 1;	// 현재 방향의 왼쪽 방향으로 바꿔준다.
+            // 맵의 외곽은 항상 바다, 범위 검사 불필요하다.
+            if (map[curY + gmoving[pos][0]][curX + gmoving[pos][1]] == static_cast<int>(state::land)) {
+                curY += gmoving[pos][0], curX += gmoving[pos][1];
+                map[curY][curX] = static_cast<int>(state::visited);	// 방문 표시한다.
+                ret++;
+                break;
+            }
+            else returnCnt++;	// 갈 수 없다면 방향만 바꾸고 돌아가기 카운트 하나 증감.
+        }
+        if (returnCnt == 4) {	// 더 이상 갈 곳이 없다면 뒤로 이동해야한다.
+            curY -= gmoving[pos][0], curX -= gmoving[pos][1];
+            // 뒷칸이 바다일 경우 더 이상 이동할 수 없으므로 움직임 종료.
+            if (map[curY][curX] == static_cast<int>(state::ocean)) break;
         }
     }
-
-    //solution
-    int cnt = 0, turnCnt = 0;
-
-    //다 막힌 경우 뒤로 이동
-    if (turnCnt == 4) {
-
-    }
-
-    //1. 해당 방향에 갈 수 있는 칸 있으면 전진
-    if (dir == 0) {         //북
-        if (map[y - 1][x] == 0) {   //전진 가능하면 전진
-            y--;
-            cnt++;
-        }
-        else {                      //불가하면 turn
-            turn(dir, turnCnt);
-        }
-    }
-    else if (dir == 1) {    //동
-        if (map[y][x + 1] == 0) {
-            x++;
-            cnt++;
-        }
-        else {
-            turn(dir, turnCnt);
-        }
-    }
-    else if (dir == 2) {    //남
-        if (map[y + 1][x] == 0) {
-            y++;
-            cnt++;
-        }
-        else {
-            turn(dir, turnCnt);
-        }
-    }
-    else if (dir == 3) {    //서
-        if (map[y][x - 1] == 0) {
-            x--;
-            cnt++;
-        }
-        else {
-            turn(dir, turnCnt);
-        }
-    }
+    cout << ret << '\n';
 
 
-    cout << cnt << endl;
+
+    //int map[50][50];
+    //int row, col, dir, x, y;
+    //cin >> row >> col;
+    //cin >> x >> y >> dir;
+    //for (int i = 0; i < row; i++)
+    //{
+    //    for (int j = 0; j < col; j++)
+    //    {
+    //        cin >> map[i][j];
+    //    }
+    //}
+
+    ////solution
+    //int cnt = 0, turnCnt = 0;
+
+    ////다 막힌 경우 뒤로 이동
+    //if (turnCnt == 4) {
+
+    //}
+
+    ////1. 해당 방향에 갈 수 있는 칸 있으면 전진
+    //if (dir == 0) {         //북
+    //    if (map[y - 1][x] == 0) {   //전진 가능하면 전진
+    //        y--;
+    //        cnt++;
+    //    }
+    //    else {                      //불가하면 turn
+    //        turn(dir, turnCnt);
+    //    }
+    //}
+    //else if (dir == 1) {    //동
+    //    if (map[y][x + 1] == 0) {
+    //        x++;
+    //        cnt++;
+    //    }
+    //    else {
+    //        turn(dir, turnCnt);
+    //    }
+    //}
+    //else if (dir == 2) {    //남
+    //    if (map[y + 1][x] == 0) {
+    //        y++;
+    //        cnt++;
+    //    }
+    //    else {
+    //        turn(dir, turnCnt);
+    //    }
+    //}
+    //else if (dir == 3) {    //서
+    //    if (map[y][x - 1] == 0) {
+    //        x--;
+    //        cnt++;
+    //    }
+    //    else {
+    //        turn(dir, turnCnt);
+    //    }
+    //}
+
+
+    //cout << cnt << endl;
 }
 
 #include <iostream>

@@ -19,8 +19,8 @@ while x != m-1 or y != n-1 :
                 x+=arrX[i]
                 y+=arrY[i]
                 cnt += 1
-                break;
+                break
         except IndexError: #인덱스 범위 벗어나면 다음 루프를 돌 수 있게
-            continue;
+            continue
 
 print(cnt)

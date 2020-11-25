@@ -5,15 +5,18 @@ N, K = tuple(map(int, sys.stdin.readline().split()))
 A = [int(x) for x in input().split()]
 B = [int(x) for x in input().split()]
 
-A.sort()
-B.sort(reverse=True)
 
 count = 0
 while(count != K):
-    if(A[count] > B[count]):
+    A.sort()
+    B.sort(reverse=True)
+
+    if(A[0] > B[0]):
         break
     else:
-        A[count] = B[count]
+        tmp = A[0]
+        A[0] = B[0]
+        B[0] = tmp
 
     count+= 1
 

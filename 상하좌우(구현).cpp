@@ -4,8 +4,8 @@
 using namespace std;
 
 struct Location {
-	int x = 1;		//Çà
-	int y = 1;		//¿­
+	int x = 1;		//í–‰
+	int y = 1;		//ì—´
 };
 
 int main() {
@@ -18,7 +18,7 @@ int main() {
 	do {
 		cin >> C;
 		V.push_back(C);
-	} while (getc(stdin) == ' ');		//ÀÔ·ÂÀÌ ¾øÀ» ¶§±îÁö °è¼Ó ÀÔ·Â¹Ş±â
+	} while (getc(stdin) == ' ');		//ì…ë ¥ì´ ì—†ì„ ë•Œê¹Œì§€ ê³„ì† ì…ë ¥ë°›ê¸°
 
 	
 	for (int i = 0; i < V.size(); i++) {

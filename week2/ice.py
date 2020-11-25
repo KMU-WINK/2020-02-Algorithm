@@ -12,19 +12,6 @@ for i in range(N):
 
 dir = [[1,0],[0,1],[-1,0],[0,-1]]
 
-# def dfs(mapp, check, row, col):
-#     mapp[row][col] == check
-#
-#     for i in range(4):
-#         if (row + dir[i][0] < 0 or row + dir[i][0] >= N):
-#             continue
-#
-#         if (col + dir[i][1] < 0 or col + dir[i][1] >= M):
-#             continue
-#
-#         if (mapp[row + dir[i][0]][col + dir[i][1]] == 0):
-#             dfs(mapp, check, row + dir[i][0] , col + dir[i][1])
-
 def dfs(mapp, check, row, col):
     mapp[row][col] = check
     visit = []

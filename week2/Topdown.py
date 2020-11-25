@@ -3,11 +3,11 @@ number = []
 for i in range(N):
     number.append(int(input()))
 
-for i in range(N-1):
-    for j in range(i,N-1):
-        if(number[i] < number[i+1]):
-            tmp = number[i+1]
-            number[i+1] = number[i]
-            number[i] = tmp
+for i in range(N):
+    for j in range(N-1):
+        if(number[j] < number[j+1]):
+            tmp = number[j+1]
+            number[j+1] = number[j]
+            number[j] = tmp
 
 print(number)

@@ -15,7 +15,7 @@ while True:
     next_x_idx, next_y_idx = location[0] + DIRECT[location[2]][0], location[1] + DIRECT[location[2]][1] # 다음 좌표
 
     if visited[next_x_idx][next_y_idx] == 0: # 방문할 수 있는 곳이면
-        location[0], location[1] = next_x_idx, next_y_idx # 방향 변경
+        location[0], location[1] = next_x_idx, next_y_idx
         visited[location[0]][location[1]] = 1 # 방문 처리
         visited_count += 1 # 방문 카운트
     elif rotate_count < 4:

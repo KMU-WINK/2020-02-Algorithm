@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int checkROW(char row, int col) {		//¼öÆòÀ¸·Î 2, ¼öÁ÷À¸·Î 1 ÀÌµ¿ °è»ê
+int checkROW(char row, int col) {		//ìˆ˜í‰ìœ¼ë¡œ 2, ìˆ˜ì§ìœ¼ë¡œ 1 ì´ë™ ê³„ì‚°
 	int count = 0;
 	if ('b' < row && row < 'g') {
 		if (1 < col && col < 8) count += 4;
@@ -14,7 +14,7 @@ int checkROW(char row, int col) {		//¼öÆòÀ¸·Î 2, ¼öÁ÷À¸·Î 1 ÀÌµ¿ °è»ê
 	}
 	return count;
 }
-int checkCOL(char row, int col) {		//¼öÁ÷À¸·Î 2, ¼öÆòÀ¸·Î 1 ÀÌµ¿ °è»ê
+int checkCOL(char row, int col) {		//ìˆ˜ì§ìœ¼ë¡œ 2, ìˆ˜í‰ìœ¼ë¡œ 1 ì´ë™ ê³„ì‚°
 	int count = 0;
 	if ('a' < row && row < 'h') {
 		if (2 < col && col < 7)count += 4;

@@ -1,0 +1,13 @@
+N, M = map(int,input().split())
+tteok_list = list(map(int,input().split()))
+cnt = 0
+while(True):
+    request_tteok = 0
+    for tteok in tteok_list:
+        if tteok - cnt >= 0:
+            request_tteok += tteok - cnt
+    if request_tteok == M:
+        break
+    cnt += 1
+
+print(cnt)

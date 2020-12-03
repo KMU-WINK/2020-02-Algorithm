@@ -24,7 +24,6 @@ def startEnd(H):
         return List[0]
 
 s = startEnd(H)
-print(s)
 if s==List[0]:  #getCnt(List[0])<=M일때
     while(cnt<M): #cnt>=M일때까지
         cnt = getCnt(s)

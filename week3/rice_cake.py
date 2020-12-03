@@ -4,16 +4,26 @@ N, M = tuple(map(int, sys.stdin.readline().split()))
 
 rice_cake = [int(x) for x in sys.stdin.readline().split()]
 
-rice_cake.sort(reverse = True)
+small = 0 # 짤린 떡 세기위한 변수
+big = max(rice_cake) # 기계가 가지는 최댓
+total = 0
 
-zzal = 0 # 짤린 떡 세기위한 변수
-big = rice_cake[0] # 기계가 가지는 최댓
+while(True):
 
-while(zzal < M):
-    zzal = 0
-    big -= 1
-    for i in range(len(rice_cake)):
-        if(rice_cake[i] > big):
-            zzal += rice_cake[i] - big
+    middle = int((small + big)/2)
+    total = 0
+    for i in rice_cake:
+        if(i > middle):
+            total += i - middle
+        else:
+            continue
 
-print(big)
+    if total > M:
+        small = middle
+    elif total < M:
+        big = middle
+    else:
+        middle = int((small + big)/2)
+        break
+
+print(middle)

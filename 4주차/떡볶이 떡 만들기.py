@@ -1,9 +1,11 @@
 import sys
+
 n, m = map(int, sys.stdin.readline().split())
 
 rice_cakes = list(map(int, sys.stdin.readline().split()))
 max_tteok = max(rice_cakes)
 min_tteok = 0
+
 
 def cutting(rice_cakes, cutting_value):
     value = 0
@@ -15,14 +17,15 @@ def cutting(rice_cakes, cutting_value):
 
     return value
 
+
 while True:
     cut_length = (max_tteok + min_tteok) // 2
-    answer = cutting(rice_cakes, cut_length)
+    tteok_length = cutting(rice_cakes, cut_length)
 
-    if answer == m:
+    if tteok_length == m:
         print(cut_length)
         break
-    elif answer > m:
+    elif tteok_length > m:
         min_tteok = cut_length
-    elif answer < m :
+    elif tteok_length < m:
         max_tteok = cut_length

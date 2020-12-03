@@ -14,8 +14,6 @@ while start <= end:
         cut = heights[i] - mid
         if cut >= 0:
             sum += cut
-        else:
-            continue
     # sum이 손님한테 줄 조건을 충족했을 때
     if ((sum / m) == 1) and ((sum % m) <= n):
         result = mid

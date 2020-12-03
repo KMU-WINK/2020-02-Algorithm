@@ -8,7 +8,7 @@ int main(){
     int count = 0;
     int row[] = {2, 2, -2, -2, 1, 1, -1, -1};
     int col[] = {1, -1, 1, -1, 2, -2, 2, -2};
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 8; i++) // 경우의 수 8가지
     {
         int input[] = {a[0]-96, a[1]-48}; //아스키코드 a1 -> {1, 1}
         input[0]+=row[i];

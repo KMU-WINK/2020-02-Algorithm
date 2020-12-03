@@ -27,25 +27,27 @@ int main(){
     while (1)
     {    
         d = direction;
-        nx = b + dx[d];
-        ny = a + dy[d];
+        nx = a + dx[d];
+        ny = b + dy[d];
         // 바다 x , 방문 x
         if(map[nx][ny] != 1 && visit[nx][ny] != 1){
-            b = nx;
-            a = ny;
+            a = nx;
+            b = ny;
             visit[nx][ny] = 1;
             count += 1;
         }
+
         else{
             turn_count += 1;
             d++;
         }
+
         if(turn_count == 3){
-            nx = b + dx[d];
-            ny = a + dy[d];
+            nx = a + dx[d];
+            ny = b + dy[d];
             if(map[nx][ny] != 1){
-                b = nx;
-                a = ny;
+                a = nx;
+                b = ny;
             }
             else
             {

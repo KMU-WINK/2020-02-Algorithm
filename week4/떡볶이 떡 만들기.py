@@ -2,22 +2,38 @@ import sys
 N,M = (map(int, sys.stdin.readline().split()))
 List = list(map(int, sys.stdin.readline().split()))
 List.sort()
-H = List[(N-1)//2]
-h=H
+H = (N-1)//2
 cnt =0
-
-def getCnt(h):
+def getCnt(H):
     ans = 0
-    for l in List:
-        if l>=h:
-            ans += l - h
+    for x in List:
+        ans+=x-H if (x-H>=0) else 0
     return ans
 
-while(cnt!=M):
-    cnt = getCnt(h)
-    if h>List[-1]:
-        h = H-1
-    else:
-        h+=1
-        cnt=getCnt(h)
-print(h)
+def startEnd(H):
+    if H>=0 and H+1<N-1:
+        start = getCnt(List[H])
+        end = getCnt(List[H+1])
+        if start>=M and end<=M:
+            return H
+        elif start<=M:
+            return startEnd(H-1)
+        else:
+            return startEnd(H+1)
+    elif H==0 and getCnt(H)<=M:
+        return List[0]
+
+s = startEnd(H)
+print(s)
+if s==List[0]:  #getCnt(List[0])<=M일때
+    while(cnt<M): #cnt>=M일때까지
+        cnt = getCnt(s)
+        s-=1
+    print(s)
+else:
+    e = List[s+1]
+    for i in range(List[s],e+1):
+        cnt= getCnt(i)
+        if M<=cnt<M+1:
+            print(i)
+            break

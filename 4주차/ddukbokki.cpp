@@ -1,34 +1,36 @@
 #include <iostream>
+#include <vector>
 using namespace std;
-
+int n, m, dmax = 0;
+int cut(vector<int>& dd, int key) {
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (dd[i] - key < 0) {
+            continue;
+        }
+        sum += (dd[i] - key);
+    }
+    return sum;
+}
 int main(void) {
-    int n, m, max = 0;
     cin >> n >> m;
     vector<int> dd(n);
     for (int i = 0; i < n; i++)
     {
         cin >> dd[i];
-        if (max < dd[i]) max = dd[i];
+        if (dmax < dd[i]) dmax = dd[i];
     }
-
-    int key = max / 2;
+    int key = dmax / 2;
+    int sum = 0;
     while (true) {
-        int sum = 0;
-        for (int i = 0; i < n; i++)
-        {
-            if (dd[i] - key < 0) {
-                continue;
-            }
-            sum += (dd[i] - key); t
+        sum = cut(dd, key);
+        if (sum >= m) {
+            if (cut(dd, key + 1) < m) break;
+            key = (dmax + key) / 2;
         }
-        if (sum == m) {
-            break;
-        }
-        else if (sum > m) {
-            key = (max + key) / 2;
-        }
-        else if (sum < m) {
-            max = key;
+        else {
+            dmax = key;
             key /= 2;
         }
     }

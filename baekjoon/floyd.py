@@ -34,6 +34,7 @@ for k in range(1, N+1):
 for i in range(1,N+1):
     for j in range(1,N+1):
         if(result[i][j] == sys.maxsize):
+            print(0, end=' ')
             continue
         print(result[i][j], end=' ')
     print()

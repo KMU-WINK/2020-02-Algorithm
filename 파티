@@ -1,0 +1,43 @@
+import heapq
+
+INF = 1000000000
+
+
+
+
+def dijsk(start, graph):
+    heap = []
+    distance = [INF] * (node + 1) #각 노드에 코스트가 들어가게 disntance를 만들고
+    heapq.heappush(heap, (0,start)) #heap에 cost와 시작점 넣기
+    distance[start] = 0 #시작점은 코스트가 0
+    while heap: #heap이 사라지면 끝
+        distanceCost, nowNode = heapq.heappop(heap) #heap에 최소값 꺼내서 cost와 시작점 만들기
+
+        if distance[nowNode] < distanceCost: #만약 INF면 넘기기(길이 없으면 넘어가기)
+            continue
+        for i in graph[nowNode]:
+            cost = distanceCost + i[1] # 현재 노드까지에 코스트와 길의 코스트 더해주기
+            if cost < distance[i[0]]: #노드의 코스트보다 현재 코스트가 작으면 갱신
+                distance[i[0]] = cost
+                heapq.heappush(heap, (cost,i[0])) #갱신된 값 heap에 넣어주기 이유: heappop에서 가장 작은 cost를 선택해주기 위해서서
+    return distance
+
+
+node, edge, start = map(int, input().split())
+
+gograph = [[] for i in range(node + 1)]
+returngraph = [[] for i in range(node + 1)]
+for i in range(edge):
+    s,a,c = map(int, input().split())
+    returngraph[s].append((a,c))
+    gograph[a].append((s,c))
+
+distance = dijsk(start, returngraph)
+timetable = distance
+
+distance = dijsk(start, gograph)
+totaltime = [x + y for x,y in zip(timetable[1:node+1],distance[1:node+1])]
+print(max(totaltime))
+
+
+

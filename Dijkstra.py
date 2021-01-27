@@ -1,5 +1,6 @@
 import sys
-from heapq import heappush, heappop
+from heapq import heappush, heappop 
+# heapq 모듈 사용
 r = sys.stdin.readline
 INF = 1e9
 

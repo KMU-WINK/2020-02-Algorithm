@@ -1,13 +1,20 @@
 import sys
 K,L = map(int, sys.stdin.readline().split())
 array = [sys.stdin.readline().rstrip() for x in range(L)]
-nonDupArray =[]
-for i in array: #중복 검사
-    if (i not in nonDupArray) :
-        nonDupArray.append(i)
-    else :
-        nonDupArray.remove(i)
-        nonDupArray.append(i)
-for i in nonDupArray[:K]:
-    print(i)
-    #시간초과나서 set으로 다시한번 풀어볼 예정~
+array.reverse()
+def remove_duplicates(array):
+    my_set = set()
+    nonDupArray =[]
+    for i in array:
+        if i not in my_set:
+            nonDupArray.append(i)
+            my_set.add(i)
+    return nonDupArray
+array = remove_duplicates(array)
+N = len(array)
+if K<N:
+    for i in range(K):
+        print(array[-1-i])
+else :
+    for i in array[::-1]:
+        print(i)

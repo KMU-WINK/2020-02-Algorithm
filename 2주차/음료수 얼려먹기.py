@@ -11,7 +11,7 @@ def dfs(v1, v2):
     if v1 < 0 or v1 >= n or v2 < 0 or v2 >= m:
         return False
 
-    if not graph[v1][v2]:  # 구멍이 뚫려있다면
+    if not graph[v1][v2]:
         graph[v1][v2] = 1
         dfs(v1 + 1, v2)
         dfs(v1, v2 + 1)

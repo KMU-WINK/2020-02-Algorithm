@@ -20,10 +20,10 @@ def union(x, y, P):
     yP = findParent(y, P)
 
     if xP > yP:
-        P[x] = yP
+        P[x] = y
 
     else:
-        P[y] = xP
+        P[y] = x
         P[yP] = xP
 
 
